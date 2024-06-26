@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import Questionnaire from '../models/questionModel.js';
+import cloudinary from 'cloudinary';
 
 // @desc    send questions
 // @route   POST /api/questionnaire
@@ -15,12 +16,17 @@ const questions = asyncHandler(async (req, res) => {
     hasHistoryOfHeartAttacks,
   } = req.body;
 
+  const image = req.file.path;
+  const result = await cloudinary.uploader.upload(image);
+  const skinImage = result.secure_url;
+
   const questions = await Questionnaire.create({
     gender,
     age,
     skinType,
     allergies,
     skinIssues,
+    skinImage,
     isPregnantBreastfeeding,
     hasHistoryOfHeartAttacks,
   });
@@ -28,6 +34,12 @@ const questions = asyncHandler(async (req, res) => {
     res.json({
       _id: questions._id,
       age: questions.age,
+      skinType: questions.skinType,
+      allergies: questions.allergies,
+      skinIssues: questions.skinIssues,
+      skinImage: questions.skinImage,
+      isPregnantBreastfeeding: questions.isPregnantBreastfeeding,
+      hasHistoryOfHeartAttacks: questions.hasHistoryOfHeartAttacks,
     });
   } else {
     res.status(401);
