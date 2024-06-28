@@ -1,13 +1,11 @@
 .dermatologistContainer {
-    position: absolute;
     width: 100%;
-    min-height: 100vh;
-    background-image: url('../images/bannerImg.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    transition: background-image 0.5s ease-in-out;
-}
+    height: 100vh;
+    overflow: hidden;
+    color: white; 
+  }
+  
+
 
 .informationToggle {
     display: none;
@@ -17,15 +15,32 @@
     display: none;
 }
 
-.infoTreatment {
-    position: relative;
-    width: 50%;
-    min-height: 100vh;
-    background-color: #007e85;
+.contentsInfo {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    height: 100vh;
+    justify-content: space-between;
+}
+
+.infoTreatment,
+.informationDetails {
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px; 
+  transition-duration: 1000ms;
+}
+
+.infoTreatment {
+  background: #007e85;
+  color: white;
+  border-right: 1px solid #ddd; 
+}
+
+.informationDetails {
+  color: black;
 }
 
 .infoTreatment h1 {
@@ -42,21 +57,71 @@
 .infoTreatment button {
     border: none;
     padding: 15px 30px;
+    border-radius: 30px;
     background-color: black;
     color: white;
     font-size: 1.2rem;
+    transition-duration: 500ms;
 }
 
+.infoTreatment button:hover {
+    background-color: #5d632b;
+}
+
+.carouselSection {
+    width: 60%;
+}
+
+.heading {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #007e85;
+}
+
+.treatment-videos {
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.treatment-videos > h3 {
+    font-size: 3rem;
+    border-bottom: 1px solid gray;
+    color: #007e85;
+    font-weight: 700;
+}
+
+.video-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.video-wrapper > a {
+    text-decoration: none;
+    margin-top: 10px;
+    color: black;
+    font-size: 3rem;
+    transition-duration: 500ms;
+}
+
+.video-wrapper > a:hover {
+    color:#007e85;
+}
 
 /* ******************* Responsive Screen *************************** */
 
 @media only screen and (max-width: 600px) {
-    .dermatologistContainer {
-        background-position: 85%;
+    .informationDetails {
+        width: 100%;
     }
-
     .infoTreatment {
         display: none;
+        flex: none;
     }
 
     .hiddenInfo {
@@ -70,20 +135,21 @@
 
     .hiddenBtn {
         display: none;
-        
+        position: absolute;
     }
 
     .visibleClose {
         margin-top: 60px;
-        margin-left: 80%;
+        margin-left: 190%;
         position: absolute;
         font-size: 3rem;
-        color: white;
+        color: rgb(255, 255, 255);
         display: block;
-        z-index: 10;
     }
 
     .informationToggle {
+        width: 40%;
+        position: absolute;
         display: block;
         display: flex;
         justify-content: space-between;
@@ -91,7 +157,7 @@
     }
 
     .informationToggle button {
-        padding: 2% 5%;
+        padding: 5% 10%;
         margin: 10px 20px;
         border: none;
         background-color: #007e85;
@@ -108,16 +174,21 @@
         text-align: justify;
         padding: 0 10%;
     }
+
+    .carouselSection {
+        width: 100%;
+    }
+
+    .treatment-videos {
+        width: 100%;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) and (max-width: 768px) {
-    .dermatologistContainer {
-        background-position: 85%;
-    }
-
     .infoTreatment {
         display: none;
+        flex: none;
     }
 
     .hiddenInfo {
@@ -131,19 +202,21 @@
 
     .hiddenBtn {
         display: none;
+        position: absolute;
     }
 
     .visibleClose {
         margin-top: 60px;
-        margin-left: 80%;
+        margin-left: 190%;
         position: absolute;
         font-size: 3rem;
-        color: white;
+        color: rgb(255, 255, 255);
         display: block;
-        z-index: 10;
     }
 
     .informationToggle {
+        width: 40%;
+        position: absolute;
         display: block;
         display: flex;
         justify-content: space-between;
@@ -151,7 +224,7 @@
     }
 
     .informationToggle button {
-        padding: 2% 5%;
+        padding: 5% 10%;
         margin: 10px 20px;
         border: none;
         background-color: #007e85;
@@ -172,9 +245,6 @@
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) and (max-width: 992px) {
-    .dermatologistContainer {
-        background-position: 80% 50%;
-    }
 
     .infoTreatment h1 {
         font-size: 4rem;
@@ -190,13 +260,11 @@
     .infoTreatment button {
         margin-top: 10px;
     }
+    
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
-    .dermatologistContainer {
-        background-position: 80% 50%;
-    }
 
     .infoTreatment h1 {
         font-size: 4rem;
@@ -211,6 +279,10 @@
 
     .infoTreatment button {
         margin-top: 10px;
+    }
+
+    .informationDetails {
+       max-height: 100vh;
     }
 }
 
